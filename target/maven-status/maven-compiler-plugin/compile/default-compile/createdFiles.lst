@@ -1,0 +1,4 @@
+es/model/Ship.class
+es/SpringBootReactApplication.class
+es/controller/ShipController.class
+es/repository/ShipRepository.class
