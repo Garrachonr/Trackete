@@ -7,15 +7,33 @@ import javax.persistence.Id;
 
 @Entity
 public class Ship implements Serializable{
-    @Id
+    private String name;
     private String email;
 	private String pass;
     private String company;
+    @Id
     private String pedido;
     private String status;
+    private String address;
 
     public Ship() {
         this.status = "En preparación";
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getEmail() {
