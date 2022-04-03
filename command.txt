@@ -1,4 +1,4 @@
-curl -H "Content-Type: application/json" -d '{ "email": "...", "pass": "...", "company": "...", "pedido": "...", "status": "..."}' -X POST http://localhost:8080/ships
+curl -H "Content-Type: application/json" -d '{ "name":"...","email": "...", "pass": "...", "company": "...", "pedido": "...", "status": "...","address":"..."}' -X POST http://localhost:8080/ships
 
 
 
