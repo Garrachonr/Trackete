@@ -49,11 +49,11 @@ public class ShipController{
     @PutMapping("/ships/{id}")
     ResponseEntity<Ship> update(@RequestBody Ship newShip, @PathVariable String id) {
       return shipRepository.findById(id).map(Ship -> {
-        Ship.setCompany(newShip.getCompany());
-        Ship.setPedido(newShip.getPedido());
-        Ship.setStatus(newShip.getStatus());
+        //Ship.setCompany(newShip.getCompany());
+        Ship.setPedidos(newShip.getPedidos());
+        //Ship.setStatus(newShip.getStatus());
         Ship.setName(newShip.getName());
-        Ship.setAddress(newShip.getAddress());
+        //Ship.setAddress(newShip.getAddress());
         shipRepository.save(Ship);
         return ResponseEntity.ok().body(Ship);
       }).orElse(new ResponseEntity<Ship>(HttpStatus.NOT_FOUND));
@@ -65,14 +65,14 @@ public class ShipController{
       return ResponseEntity.ok().body(null);
     }
 
-    @GetMapping("/ships/company/{id}")
+    /* @GetMapping("/ships/company/{id}")
     List<Ship> readCompany(@PathVariable String id) {
       return (List<Ship>) shipRepository.findByCompany(id);
     }
-
-    @GetMapping("/ships/email/{id}")
+*/
+    /* @GetMapping("/ships/email/{id}")
     List<Ship> readEmail(@PathVariable String id) {
       return (List<Ship>) shipRepository.findByEmail(id);
     }
-
+*/
 }

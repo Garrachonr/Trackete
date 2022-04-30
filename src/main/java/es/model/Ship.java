@@ -8,16 +8,17 @@ import javax.persistence.Id;
 @Entity
 public class Ship implements Serializable{
     private String name;
+    @Id
     private String email;
 	private String pass;
-    private String company;
-    @Id
-    private String pedido;
-    private String status;
-    private String address;
+    //private String company;
+    
+    private String pedidos;
+    //private String status;
+    //private String address;
 
     public Ship() {
-        this.status = "En preparación";
+       // this.status = "En preparación";
     }
 
     public String getName() {
@@ -28,13 +29,13 @@ public class Ship implements Serializable{
         this.name = name;
     }
 
-    public String getAddress() {
+    /*public String getAddress() {
         return address;
     }
 
     public void setAddress(String address) {
         this.address = address;
-    }
+    } */
 
     public String getEmail() {
         return email;
@@ -51,7 +52,7 @@ public class Ship implements Serializable{
     public void setPass(String pass) {
         this.pass = pass;
     }
-
+/*
     public String getCompany() {
         return company;
     }
@@ -59,22 +60,22 @@ public class Ship implements Serializable{
     public void setCompany(String company) {
         this.company = company;
     }
-
-    public String getPedido() {
-        return pedido;
+*/
+    public String getPedidos() {
+        return pedidos;
     }
 
-    public void setPedido(String pedido) {
-        this.pedido = pedido;
+    public void setPedidos(String pedidos) {
+        this.pedidos = pedidos;
     }
 
-    public String getStatus() {
+    /*public String getStatus() {
         return status;
     }
 
     public void setStatus(String state) {
         this.status = state;
-    }
+    } */
 
     
 
