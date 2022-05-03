@@ -1,0 +1,98 @@
+import React, { Component, useState, useEffect } from 'react';
+import './style.css';
+import { Link } from 'react-router-dom';
+import { Button, Container } from 'react-bootstrap';
+
+function Login_plantilla() {
+    
+    
+
+    return (
+
+
+
+        
+		
+		
+		
+	
+        
+        
+           
+        <div class="form-container sign-in-container">
+
+                <img src={process.env.PUBLIC_URL + "/images/Logo.png"} height="150" widht="150" alt="Image" align = "center"></img>
+
+
+                <br></br>
+                <br></br>
+                <br></br>
+
+                
+                <div class="row">
+                    <h1>Iniciar Sesión</h1>
+                    <Button class="ghost">Usuario</Button>
+
+                    <form>
+                        <label>
+                            <input type = "text" name ="name" placeholder='Usuario o Email'/>
+                        </label>
+                            
+                    
+                    </form>
+                
+
+
+                    <Button>Contraseña</Button>
+
+                    <form>
+                        <label>
+                            <input type = "text" name ="name" placeholder='Contraseña'/>
+                        </label>
+                            
+                    
+                    </form>
+
+                    <h4>¿Has olvidado tu contraseña?</h4>
+                    <br></br>
+                    <br></br>
+                    <Button>INICIAR SESIÓN</Button>
+                    
+                    
+                </div>
+
+            
+
+             
+
+                <Button>registro</Button>
+
+               
+   
+            <br></br>
+            <br></br>
+
+            <div class="row">
+                <p></p>
+                
+            </div>
+
+            <br></br>
+            
+
+        
+
+            <br></br>
+            <br></br>
+
+            <img src={process.env.PUBLIC_URL + "/images/LogoSinTexto.png"} height="150" widht="150" alt="Image" align = "center"/>            
+
+        </div>    
+
+
+    );
+
+}
+
+
+export default Login_plantilla;
