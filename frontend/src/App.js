@@ -10,7 +10,7 @@ class App extends Component {
     return (
         <Router>
           <Switch>
-            <Route path='/' exact={true} component={Login}/>
+            <Route path='/' exact={true} component={Home}/>
             <Route path='/tfgs' exact={true} component={TFGList}/>
             <Route path='/tfgs/:email' component={TFGEdit}/>
           </Switch>
