@@ -49,7 +49,7 @@ public class ShipController{
     @PutMapping("/ships/{id}")
     ResponseEntity<Ship> update(@RequestBody Ship newShip, @PathVariable String id) {
       return shipRepository.findById(id).map(Ship -> {
-        //Ship.setCompany(newShip.getCompany());
+        Ship.setCompañias(newShip.getCompañias());
         Ship.setPedidos(newShip.getPedidos());
         //Ship.setStatus(newShip.getStatus());
         Ship.setName(newShip.getName());

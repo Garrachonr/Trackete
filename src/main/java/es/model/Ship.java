@@ -5,13 +5,14 @@ import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+
 @Entity
 public class Ship implements Serializable{
     private String name;
     @Id
     private String email;
 	private String pass;
-    //private String company;
+    private String compañias;
     
     private String pedidos;
     //private String status;
@@ -52,15 +53,15 @@ public class Ship implements Serializable{
     public void setPass(String pass) {
         this.pass = pass;
     }
-/*
-    public String getCompany() {
-        return company;
+
+    public String getCompañias() {
+        return compañias;
     }
 
-    public void setCompany(String company) {
-        this.company = company;
+    public void setCompañias(String compañias) {
+        this.compañias = compañias;
     }
-*/
+
     public String getPedidos() {
         return pedidos;
     }
