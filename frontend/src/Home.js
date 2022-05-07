@@ -94,11 +94,16 @@ function Home() {
         setCompany("");
     }
 
+
+    const UPSTRUE = true;
+    const SEURTRUE = true;
+   
+    const [upsTrue, setUpsTrue] = useState(UPSTRUE);
+    const [seurTrue, setSeurTrue] = useState(SEURTRUE);
+
     return (
         <div class="login">
-            <br></br>
-            <br></br>            <br></br>
-            <br></br>            <br></br>
+          
             <br></br>            <br></br>
             <br></br>            <br></br>
             <br></br>            <br></br>
@@ -131,6 +136,9 @@ function Home() {
 
             <div class="col-12  mainPagecontainer ">
                 <h2 class="blog-post-title">Pedidos</h2>
+
+                <label><input type="checkbox" value="upsTrue" onChange={e => setUpsTrue(!upsTrue)}/>UPS</label>
+                <label><input type="checkbox" value= "seurTrue" onChange={e => setSeurTrue(!seurTrue)}/>SEUR</label>
 
                 <div class="aside">
                     <table>
