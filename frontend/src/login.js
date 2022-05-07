@@ -87,7 +87,7 @@ function Login() {
 
 
                     <h2>
-                        <input type="submit"/>
+                        <input type="submit" value={"Iniciar sesión"}/>
                     </h2>
                     </form>
 
@@ -101,7 +101,7 @@ function Login() {
                     <h5>Date de alta en nuestro servicio</h5>
                     <h2>
                         <ButtonGroup>
-                        <Button class="Button" align="center" > <Link to="/registro" style={{color:"#FFF"}}> Ir a registro</Link></Button>
+                        <Button class="Button" align="center" > <Link to="/registro" style={{color:"#FFF"}}> Regístrate </Link></Button>
                         </ButtonGroup>
                     </h2>
                     

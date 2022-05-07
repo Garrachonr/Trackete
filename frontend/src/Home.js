@@ -95,17 +95,21 @@ function Home() {
     }
 
     return (
-        <div class="aside">
-
+        <div class="login">
             <br></br>
+            <br></br>            <br></br>
+            <br></br>            <br></br>
+            <br></br>            <br></br>
+            <br></br>            <br></br>
+            <br></br>            <br></br>
+            <br></br>            <br></br>
+            <br></br>            <br></br>
+            <br></br>            <br></br>
             <br></br>
-            <br></br>
-
             <h2><img src={process.env.PUBLIC_URL + "/images/Logo.png"} height="150" widht="150" alt="Image" align = "center"></img></h2>
 
             <div class="row">
-                <Button class="ghost">Pedidos</Button>
-                <Button>Cerrar sesion</Button>
+                <button type='button'><Link to="/Login" style={{color:"#FFF"}}>Cerrar sesion</Link></button>
                 
             </div>
    
@@ -113,7 +117,7 @@ function Home() {
             <br></br>
 
             <div class="row">
-                <p>{email}</p>
+                <h2>Hola {email} !</h2>
                 <Button onClick={() => cargar()}>Cargar</Button>
             </div>
 
@@ -136,11 +140,9 @@ function Home() {
                 </div>   
             </div>
 
-            <br></br>
-            <br></br>
 
-            <img src={process.env.PUBLIC_URL + "/images/LogoSinTexto.png"} height="150" widht="150" alt="Image" align = "center"/>            
 
+            <h2><img src={process.env.PUBLIC_URL + "/images/LogoSinTexto.png"} height="150" widht="150" alt="Image" align = "center"/></h2>
         </div>    
 
 

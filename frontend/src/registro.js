@@ -71,7 +71,7 @@ function Registro() {
 
                     <form>
                         <label>
-                            <input type="text" name="name" placeholder='Contraseña' value={password} onChange={e=>setPassword(e.target.value)}/>
+                            <input type="password" name="name" placeholder='Contraseña' value={password} onChange={e=>setPassword(e.target.value)}/>
                         </label>
                     </form>
 
