@@ -1,4 +1,4 @@
 es/model/Ship.class
-es/controller/ShipController.class
 es/SpringBootReactApplication.class
+es/controller/ShipController.class
 es/repository/ShipRepository.class

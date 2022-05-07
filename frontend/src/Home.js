@@ -1,6 +1,6 @@
 import React, { Component, useState, useEffect } from 'react';
 import './style.css';
-import { Link } from 'react-router-dom';
+import { Link , useLocation} from 'react-router-dom';
 import { Button, Container } from 'react-bootstrap';
 import Overview from "./parcelList/Overview";
 import Add from "./parcelList/Add";
@@ -18,6 +18,10 @@ function Home() {
     const [company, setCompany] = useState (COMPANY);
     const [number_array, setNumberArray] = useState (NUMBER_ARRAY);
     const [company_array, setCompanyArray] = useState(COMPANY_ARRAY);
+    
+    const location = useLocation();
+    const email = location.state.email;
+
 
     useEffect(() => {
         // Update the document title using the browser API
@@ -25,18 +29,16 @@ function Home() {
         
         // Database Acesss
         async function fetchData(){
-            const response = await fetch("/ships/email/paco@gmail.com");
+            const response = await fetch("/ships/" + email);
             const myjson = await response.json();
-            var data = []; 
-            data = myjson.map((parcel, i) => parcel.pedido);
-            setNumberArray(data);
-            data = myjson.map((parcel, i) => parcel.company);
-            setCompanyArray(data);
+            setNumberArray(myjson.pedidos.split(","));
+            setCompanyArray(myjson.compañias.split(","));
+            
         }
         fetchData();
     }, []);
 
-    function cargar(){
+    function cargar(){  
         var array = parcel_array;
         number_array.map((parcel, i) => {
             var shipment = {"shipnumber" : parcel, "company" : company_array[i]};
@@ -48,10 +50,9 @@ function Home() {
 
     async function guardar(){
         
-        var log = {"name":"melon","email": "paco@gmail.com", "pass": "...", "company": company, 
-                        "pedido": ship_number, "status": "...","address":"..."};
-        await fetch('/ships', {
-            method: 'POST',
+        var log = {"pedidos" : parcel_array.shipnumber.toString(), "compañias" : company_array.toString() };
+        await fetch('/ships' + email, {
+            method: 'PUT',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
@@ -100,7 +101,7 @@ function Home() {
             <br></br>
             <br></br>
 
-            <img src={process.env.PUBLIC_URL + "/images/Logo.png"} height="150" widht="150" alt="Image" align = "center"></img>
+            <h2><img src={process.env.PUBLIC_URL + "/images/Logo.png"} height="150" widht="150" alt="Image" align = "center"></img></h2>
 
             <div class="row">
                 <Button class="ghost">Pedidos</Button>
@@ -112,7 +113,7 @@ function Home() {
             <br></br>
 
             <div class="row">
-                <p>paco@gmail.com</p>
+                <p>{email}</p>
                 <Button onClick={() => cargar()}>Cargar</Button>
             </div>
 

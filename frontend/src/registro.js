@@ -1,6 +1,6 @@
 import React, { Component, useState, useEffect } from 'react';
 import './style.css';
-import { Link } from 'react-router-dom';
+import { Link, BrowserRouter, Route, Switch } from 'react-router-dom';
 import { Button, Container } from 'react-bootstrap';
 import {CryptoJS} from 'crypto-js';
 
@@ -35,12 +35,7 @@ function Registro() {
         setName("");
     }
 
-    function decrypt(){
-        var CryptoJS=require("crypto-js");
-        var bytes = CryptoJS.AES.decrypt(password, 'KeyISST');
-        var decryptedData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
-        setPassword(decryptedData);
-    }
+
 
     return (
 
@@ -89,18 +84,11 @@ function Registro() {
                     <br></br>
 
 
-                    <h2>¿Ya estas registrado?</h2>
-                    <h5>Inicia sesión con tu cuenta</h5>
+                    <h2>¿Ya tienes cuenta?</h2>
+                    <h5>Inicia sesión con nosotros</h5>
                     <h2>
-                        <Button onClick={()=>decrypt()}  align="center">Iniciar sesión</Button>
+                    <Button class="Button" align="center" > <Link to="/login" style={{color:"#FFF"}}> Iniciar sesión</Link></Button>
                     </h2>
-                    
- 
-
-
-
-               
-  
             </div>
         </div>    
 
