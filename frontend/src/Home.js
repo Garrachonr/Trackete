@@ -12,13 +12,15 @@ function Home() {
     const COMPANY = "";
     const NUMBER_ARRAY = [];
     const COMPANY_ARRAY = [];
+    const DETAILS = false;
 
     const [parcel_array, setParcelArray] = useState (PARCEL_ARRAY);
     const [ship_number, setShipNumber] = useState(SHIP_NUMBER);
     const [company, setCompany] = useState (COMPANY);
     const [number_array, setNumberArray] = useState (NUMBER_ARRAY);
     const [company_array, setCompanyArray] = useState(COMPANY_ARRAY);
-    
+    const [details, setDetails] = useState(DETAILS);
+
     const location = useLocation();
     const email = location.state.email;
 
@@ -50,7 +52,7 @@ function Home() {
 
     async function guardar(){
         
-        var log = {"pedidos" : parcel_array.shipnumber.toString(), "compañias" : company_array.toString() };
+        var log = {"pedidos" : parcel_array.shipnumber.toString(), "compañias" : parcel_array.company.toString() };
         await fetch('/ships' + email, {
             method: 'PUT',
             headers: {
@@ -75,7 +77,7 @@ function Home() {
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json',
-                'aftership-api-key': '612c49aa-28f8-4543-b7d9-1ea47b7f1510'
+                'aftership-api-key': '3f7f21d6-0de5-4505-8eec-84f61d4359df'
             },
             body: JSON.stringify({tracking: {tracking_number: ship_number}})
         };
@@ -88,18 +90,27 @@ function Home() {
     function saveParcel(){
         var shipment = {"shipnumber" : ship_number, "company" : company};
         var array = [...parcel_array, shipment];
-        guardar();
         setParcelArray(array);
+        guardar();
         setShipNumber("");
         setCompany("");
     }
 
+    function seeDetails(){
+        setDetails(!details);
+    }
 
     const UPSTRUE = true;
     const SEURTRUE = true;
    
     const [upsTrue, setUpsTrue] = useState(UPSTRUE);
     const [seurTrue, setSeurTrue] = useState(SEURTRUE);
+
+    function filter(company){
+        if(company== "ups"){
+            setUpsTrue(!upsTrue);
+        }
+    } 
 
     return (
         <div class="login">
@@ -140,17 +151,17 @@ function Home() {
                 <label><input type="checkbox" value="upsTrue" onChange={e => setUpsTrue(!upsTrue)}/>UPS</label>
                 <label><input type="checkbox" value= "seurTrue" onChange={e => setSeurTrue(!seurTrue)}/>SEUR</label>
 
-                <div class="aside">
+
+                <div>
                     <table>
                     {parcel_array.map((parcel, i) => {return (<Overview index = {i} number={parcel.shipnumber} 
-                        company={parcel.company}/>)})}
+                        company={parcel.company} details = {details} clickDetails={() => seeDetails()}/>)})}
                     </table>
                 </div>   
             </div>
 
 
 
-            <h2><img src={process.env.PUBLIC_URL + "/images/LogoSinTexto.png"} height="150" widht="150" alt="Image" align = "center"/></h2>
         </div>    
 
 

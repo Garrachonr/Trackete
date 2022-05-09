@@ -59,7 +59,7 @@
 body {
   background: url("images/fondo3.jpg");
   background-size: cover;
-  background-repeat: no-repeat;
+  background-repeat: repeat;
   margin: 0;
 	display: flex;
 	justify-content: center;

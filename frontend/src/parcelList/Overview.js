@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import '../style.css';
+import Details from "./Details";
 
 
 export default function Overview(props) {
@@ -18,7 +19,7 @@ export default function Overview(props) {
                 headers: {
                     Accept: 'application/json',
                     'Content-Type': 'application/json',
-                    'aftership-api-key': '612c49aa-28f8-4543-b7d9-1ea47b7f1510'
+                    'aftership-api-key': '3f7f21d6-0de5-4505-8eec-84f61d4359df'
                 }
             }
             const response = await fetch(link, options);      
@@ -31,12 +32,12 @@ export default function Overview(props) {
       }, []);
 
       return (
-        <tbody>
+        <tbody align = "justify">
             <tr key={"number" + props.index} align="center">
-                <td>{loading ? <div>Cargando</div> : parcel.data.tracking ?  <img src={process.env.PUBLIC_URL + "/images/" + parcel.data.tracking.slug + ".png"} height="200" widht="200"></img> : <div></div>}</td>
-               <td>{loading ? <div>Cargando</div> : parcel.data.tracking ? <p>{parcel.data.tracking.slug}</p> : <div></div>}</td>
+                <td>{loading ? <div></div> : parcel.data.tracking ?  <img src={process.env.PUBLIC_URL + "/images/" + parcel.data.tracking.slug + ".png"} height="200" widht="200"></img> : <div></div>}</td>
                <td></td>
-               <td>{loading ? <div>Cargando</div> : parcel.data.tracking ? <p>{parcel.data.tracking.subtag_message}</p> : <div></div>}</td>
+               <td>{loading ? <div></div> : parcel.data.tracking ? <p>{parcel.data.tracking.subtag_message}</p> : <div></div>}</td>
+               <td>{loading ? <div></div> : parcel.data.tracking ? <Details details = {props.details} parcel = {parcel.data.tracking} clickDetails={()=> props.clickDetails()}/> : <div></div>}</td>
             </tr>
         </tbody>
     );
