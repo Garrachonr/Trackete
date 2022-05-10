@@ -5,7 +5,7 @@ import { Alert, Button, ButtonGroup, Container } from 'react-bootstrap';
 import {CryptoJS} from 'crypto-js';
 import { propTypes } from 'react-bootstrap/esm/Image';
 import './App.js';
-import MuiAlert from "@material-ui/lab/Alert";
+import swal from "sweetalert";
 
 
 function Login() {
@@ -18,38 +18,80 @@ function Login() {
 
     const history = useHistory();
     
+
+
         async function comprobar(e){
+
+            
             e.preventDefault();
             const text = email;
-            // console.log(text);
-            const response = await fetch("/ships/" + text);
-            const myjson = await response.json();
-            var encryptedPass = myjson.pass;
-            // console.log(encryptedPass);
-            var CryptoJS=require("crypto-js");
-            var bytes = CryptoJS.AES.decrypt(encryptedPass, 'KeyISST');
-            var decryptedData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
-            if(password===decryptedData){
-                setEmail("CORRECTO");
-                setPassword("PASSWORD");
-                //this.props.history.push("/ships/email/paco@gmail.com" )
-                //ir a /home/email
-                // return fetch('/home');
-                history.push("/home",{email:text});
+            const text2 = password;
+
+            //Comrpobar que se ha escrito el usuario y contraseña
+            if(text == "" || text2 == ""){
+                //Mensaje de error
+                var alerta = swal({title: "Introduzca un usuario y contraseña", text:"Por favor vuelva a intentarlo", icon: "warning"});
+                function alert(){
+                    return alerta;
+                };
+                alert();
                 setEmail("");
                 setPassword("");
             }
-            else{
-                setEmail("INCORRECTO");
-                setPassword("PASSWORD INCORRECTA");
+
+
+            // console.log(text);
+            const response = await fetch("/ships/" + text);
+
+            //Si la respuesta de la bdd no es buena, mensaje de error
+            if(!response.ok){
+                var alerta = swal({title: "Usuario o contraseña incorectos", text:"Por favor vuelva a intentarlo" , icon: "warning"});
+                function alert(){
+                    return alerta;
+                };
+                alert();
+                setEmail("");
+                setPassword("");
                 //Mensaje de error
 
             }
-        }
-        function Alert(props){
-            return <MuiAlert elevation={6} variant ="filled" {...props}/>
+            //si la respuesta es buena, recuperamos el JSON
+            const myjson = await response.json();
+            console.log(myjson.value);
+
+                var encryptedPass = myjson.pass;
+                var text3 = myjson.name;
+                // console.log(encryptedPass);
+                var CryptoJS=require("crypto-js");
+                var bytes = CryptoJS.AES.decrypt(encryptedPass, 'KeyISST');
+                var decryptedData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
+                if(password===decryptedData){
+
+                    var alerta = swal({title: "Login correcto", text:"Bienvenido", timer:"500"});
+                    function alert(){
+                        return alerta;
+                    };
+                    alert();
+                    history.push("/home",{email:text});
+                    history.push("/home",{name:text3});
+                    setEmail("");
+                    setPassword("");
+                }
+                else{ 
+                    var alerta = swal({title: "Usuario o contraseña incorectos", text:"Por favor vuelva a intentarlo", icon: "warning"});
+                    function alert(){
+                        return alerta;
+                    };
+                    alert();
+                    setEmail("");
+                    setPassword("");
+                    //Mensaje de error
+                };
+            
 
         }
+
+
  
 
 
@@ -87,7 +129,7 @@ function Login() {
 
 
                     <h2>
-                        <button type='sumbit'  value={"Iniciar sesión"}></button>
+                        <button type='sumbit button'  value={"Iniciar sesión"}> Iniciar sesion</button>
                     </h2>
                   
                     </form>

@@ -23,6 +23,7 @@ function Home() {
 
     const location = useLocation();
     const email = location.state.email;
+    const name = location.state.name;
 
 
     useEffect(() => {
@@ -124,16 +125,13 @@ function Home() {
             <br></br>
             <h2><img src={process.env.PUBLIC_URL + "/images/Logo.png"} height="150" widht="150" alt="Image" align = "center"></img></h2>
 
-            <div class="row">
-                <button type='button'><Link to="/Login" style={{color:"#FFF"}}>Cerrar sesion</Link></button>
-                
-            </div>
+
    
             <br></br>
             <br></br>
 
             <div class="row">
-                <h2>¡Bienvenido {email} !</h2>
+                <h3>¡Bienvenido {name} !</h3>
                 <button type='button' onClick={() => cargar()}>Cargar</button>
             </div>
 
@@ -166,10 +164,12 @@ function Home() {
                     </table>
                 </div>   
             </div>
+     <div >
+            <button type='button'><Link to="/Login" >Cerrar sesion</Link></button>                
+     </div>
+        </div>  
 
 
-
-        </div>    
 
 
     );
