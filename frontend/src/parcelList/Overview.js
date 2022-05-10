@@ -10,7 +10,7 @@ export default function Overview(props) {
     const [parcel, setParcel] = useState(PARCEL);
     const [loading, setLoading] = useState(true);
 
-    const link = "https://api.aftership.com/v4/trackings/" + props.company + "/" + props.number + "/";
+    const link = "https://api.aftership.com/v4/trackings/" + props.company + "/" + props.number;
 
     useEffect(() => {
         async function fetchData() {
@@ -19,7 +19,7 @@ export default function Overview(props) {
                 headers: {
                     Accept: 'application/json',
                     'Content-Type': 'application/json',
-                    'aftership-api-key': '3f7f21d6-0de5-4505-8eec-84f61d4359df'
+                    'aftership-api-key': 'dc14c141-9b50-4470-b510-b1c164cf79a8'
                 }
             }
             const response = await fetch(link, options);      

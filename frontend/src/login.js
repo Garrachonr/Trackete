@@ -57,7 +57,7 @@ function Login() {
             }
             //si la respuesta es buena, recuperamos el JSON
             const myjson = await response.json();
-            console.log(myjson.value);
+            //console.log(myjson.value);
 
                 var encryptedPass = myjson.pass;
                 var text3 = myjson.name;
@@ -72,10 +72,8 @@ function Login() {
                         return alerta;
                     };
                     alert();
-                    history.push("/home",{email:text});
-                    history.push("/home",{name:text3});
-                    setEmail("");
-                    setPassword("");
+                    history.push("/home",{email:email});
+                    //history.push("/home",{name:text3});
                 }
                 else{ 
                     var alerta = swal({title: "Usuario o contraseña incorectos", text:"Por favor vuelva a intentarlo", icon: "warning"});

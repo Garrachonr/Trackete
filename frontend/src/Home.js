@@ -23,7 +23,7 @@ function Home() {
 
     const location = useLocation();
     const email = location.state.email;
-    const name = location.state.name;
+    //const name = location.state.name;
 
 
     useEffect(() => {
@@ -49,12 +49,18 @@ function Home() {
             array = [...array, shipment];
         })
         setParcelArray(array);
+        console.log(array);
     }
 
     async function guardar(){
-        
-        var log = {"pedidos" : parcel_array.shipnumber.toString(), "compañias" : parcel_array.company.toString() };
-        await fetch('/ships' + email, {
+        var string1 = "";
+        parcel_array.map((parcel,i) => {string1 = string1 + "," + parcel.shipnumber.toString()});
+        var string2 = "";
+        parcel_array.map((parcel,i) => {string2 = string2 + "," + parcel.company.toString()});
+        var log = {"pedidos" : string1, "compañias" : string2 };
+        const link = '/ships/' + email;
+        //console.log(link);
+        await fetch(link, {
             method: 'PUT',
             headers: {
                 'Accept': 'application/json',
@@ -78,12 +84,13 @@ function Home() {
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json',
-                'aftership-api-key': '3f7f21d6-0de5-4505-8eec-84f61d4359df'
+                'aftership-api-key': 'dc14c141-9b50-4470-b510-b1c164cf79a8'
             },
             body: JSON.stringify({tracking: {tracking_number: ship_number}})
         };
-            
+        console.log(options);
         const response = await fetch('https://api.aftership.com/v4/trackings', options);
+        console.log(response);
         const myjson = await response.json();
         setCompany(myjson.data.tracking.slug);
     }
@@ -92,7 +99,7 @@ function Home() {
         var shipment = {"shipnumber" : ship_number, "company" : company};
         var array = [...parcel_array, shipment];
         setParcelArray(array);
-        guardar();
+        //guardar();
         setShipNumber("");
         setCompany("");
     }
@@ -106,12 +113,8 @@ function Home() {
    
     const [upsTrue, setUpsTrue] = useState(UPSTRUE);
     const [seurTrue, setSeurTrue] = useState(SEURTRUE);
+    
 
-    function filter(company){
-        if(company== "ups"){
-            setUpsTrue(!upsTrue);
-        }
-    } 
 
     return (
         <div class="login">
@@ -131,7 +134,7 @@ function Home() {
             <br></br>
 
             <div class="row">
-                <h3>¡Bienvenido {name} !</h3>
+                <h3>¡Bienvenido {email} !</h3>
                 <button type='button' onClick={() => cargar()}>Cargar</button>
             </div>
 
@@ -146,8 +149,8 @@ function Home() {
             <div class="col-12  mainPagecontainer ">
                 <h2 class="blog-post-title">Pedidos</h2>
                 <div align="center">
-                    <label><input type="checkbox" value="upsTrue" onChange={e => setUpsTrue(!upsTrue)}/>UPS</label>
-                    <label><input type="checkbox" value= "seurTrue" onChange={e => setSeurTrue(!seurTrue)}/>SEUR</label>
+                    <label><input type="checkbox" value={upsTrue} onChange={e => setUpsTrue(!upsTrue)}/>UPS</label>
+                    <label><input type="checkbox" value= {seurTrue} onChange={e => setSeurTrue(!seurTrue)}/>SEUR</label>
                     <label><input type="checkbox" value= "seurTrue" onChange={e => setSeurTrue(!seurTrue)}/>MRW</label>
                     <label><input type="checkbox" value= "seurTrue" onChange={e => setSeurTrue(!seurTrue)}/>DHL</label>
                     <label><input type="checkbox" value= "seurTrue" onChange={e => setSeurTrue(!seurTrue)}/>Correos</label>
@@ -165,7 +168,7 @@ function Home() {
                 </div>   
             </div>
      <div >
-            <button type='button'><Link to="/Login" >Cerrar sesion</Link></button>                
+            <button type='button' onClick={() => guardar()}><Link to="/Login" >Cerrar sesion</Link></button>                
      </div>
         </div>  
 
