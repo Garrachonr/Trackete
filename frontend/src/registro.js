@@ -76,7 +76,7 @@ function Registro() {
                     </form>
 
                     <h2>
-                        <Button onClick={()=>register()} align="center"> Regístrate</Button>   
+                        <button type='button' onClick={()=>register()} align="center"> Regístrate</button>   
                     </h2>
 
                     <br></br>
@@ -87,7 +87,7 @@ function Registro() {
                     <h2>¿Ya tienes cuenta?</h2>
                     <h5>Inicia sesión con nosotros</h5>
                     <h2>
-                    <Button class="Button" align="center" > <Link to="/login" style={{color:"#FFF"}}> Iniciar sesión</Link></Button>
+                    <button type='button'  align="center" > <Link to="/login" > Iniciar sesión</Link></button>
                     </h2>
             </div>
         </div>    

@@ -87,8 +87,9 @@ function Login() {
 
 
                     <h2>
-                        <input type="submit" value={"Iniciar sesión"}/>
+                        <button type='sumbit'  value={"Iniciar sesión"}></button>
                     </h2>
+                  
                     </form>
 
 
@@ -101,7 +102,7 @@ function Login() {
                     <h5>Date de alta en nuestro servicio</h5>
                     <h2>
                         <ButtonGroup>
-                        <Button class="Button" align="center" > <Link to="/registro" style={{color:"#FFF"}}> Regístrate </Link></Button>
+                        <button type='button' align="center" > <Link to="/registro" > Regístrate </Link></button>
                         </ButtonGroup>
                     </h2>
                     

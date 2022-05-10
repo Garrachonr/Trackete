@@ -10,7 +10,7 @@ export default function Details(props) {
     }
 
       return (<div>
-            <Button onClick={() => clickDetails()}>Detalles</Button>
+            <button type="button" onClick={() => clickDetails()}>Detalles</button>
             {props.details ? <div></div> : 
                             <div class="container" id="container">
                                 <h4>Peso: {props.parcel.shipment_weight} kg</h4>

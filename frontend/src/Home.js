@@ -133,8 +133,8 @@ function Home() {
             <br></br>
 
             <div class="row">
-                <h2>Hola {email} !</h2>
-                <Button onClick={() => cargar()}>Cargar</Button>
+                <h2>¡Bienvenido {email} !</h2>
+                <button type='button' onClick={() => cargar()}>Cargar</button>
             </div>
 
             <br></br>
@@ -147,9 +147,16 @@ function Home() {
 
             <div class="col-12  mainPagecontainer ">
                 <h2 class="blog-post-title">Pedidos</h2>
+                <div align="center">
+                    <label><input type="checkbox" value="upsTrue" onChange={e => setUpsTrue(!upsTrue)}/>UPS</label>
+                    <label><input type="checkbox" value= "seurTrue" onChange={e => setSeurTrue(!seurTrue)}/>SEUR</label>
+                    <label><input type="checkbox" value= "seurTrue" onChange={e => setSeurTrue(!seurTrue)}/>MRW</label>
+                    <label><input type="checkbox" value= "seurTrue" onChange={e => setSeurTrue(!seurTrue)}/>DHL</label>
+                    <label><input type="checkbox" value= "seurTrue" onChange={e => setSeurTrue(!seurTrue)}/>Correos</label>
 
-                <label><input type="checkbox" value="upsTrue" onChange={e => setUpsTrue(!upsTrue)}/>UPS</label>
-                <label><input type="checkbox" value= "seurTrue" onChange={e => setSeurTrue(!seurTrue)}/>SEUR</label>
+                </div>
+
+
 
 
                 <div>
