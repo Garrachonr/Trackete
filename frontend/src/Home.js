@@ -21,6 +21,8 @@ function Home() {
     const [company_array, setCompanyArray] = useState(COMPANY_ARRAY);
     const [details, setDetails] = useState(DETAILS);
 
+    
+
     const location = useLocation();
     const email = location.state.email;
     //const name = location.state.name;
@@ -84,7 +86,7 @@ function Home() {
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json',
-                'aftership-api-key': 'dc14c141-9b50-4470-b510-b1c164cf79a8'
+                'aftership-api-key': '3f7f21d6-0de5-4505-8eec-84f61d4359df'
             },
             body: JSON.stringify({tracking: {tracking_number: ship_number}})
         };
@@ -93,6 +95,22 @@ function Home() {
         console.log(response);
         const myjson = await response.json();
         setCompany(myjson.data.tracking.slug);
+    }
+
+    async function uploadParcel2(){
+        const options = {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+                'Tracking-Api-Key':'5t7cf0b0-o958-r2k1-fdr9-fytkx05xeast'
+            },
+            body: `{\"tracking_number\":\"${ship_number}\"}`
+        };
+            
+        const response = await fetch('https://api.trackingmore.com/v3/trackings/detect', options);
+        const myjson = await response.json();
+        setCompany(myjson.data.courier_name);
     }
 
     function saveParcel(){
@@ -110,9 +128,14 @@ function Home() {
 
     const UPSTRUE = true;
     const SEURTRUE = true;
+    const MRWTRUE = true;
+    const DHLTRUE = true;
+    const CORREOSTRUE = true;
    
     const [upsTrue, setUpsTrue] = useState(UPSTRUE);
     const [seurTrue, setSeurTrue] = useState(SEURTRUE);
+    const [mrwTrue, setMrwTrue] = useState(MRWTRUE);
+    const [dhlTrue, setDhlTrue] = useState(DHLTRUE);
     
 
 
@@ -148,22 +171,27 @@ function Home() {
 
             <div class="col-12  mainPagecontainer ">
                 <h2 class="blog-post-title">Pedidos</h2>
+
                 <div align="center">
-                    <label><input type="checkbox" value={upsTrue} onChange={e => setUpsTrue(!upsTrue)}/>UPS</label>
-                    <label><input type="checkbox" value= {seurTrue} onChange={e => setSeurTrue(!seurTrue)}/>SEUR</label>
-                    <label><input type="checkbox" value= "seurTrue" onChange={e => setSeurTrue(!seurTrue)}/>MRW</label>
-                    <label><input type="checkbox" value= "seurTrue" onChange={e => setSeurTrue(!seurTrue)}/>DHL</label>
-                    <label><input type="checkbox" value= "seurTrue" onChange={e => setSeurTrue(!seurTrue)}/>Correos</label>
+                    <label>Ocultar:  |</label>
+                    <label><input type="checkbox"  value={upsTrue} onChange={e => setUpsTrue(!upsTrue)}/>|  UPS  |</label>
+                    <label><input type="checkbox"  value= {seurTrue} onChange={e => setSeurTrue(!seurTrue)}/>|  SEUR  |</label>
+                    <label><input type="checkbox"  value= {mrwTrue} onChange={e => setSeurTrue(!mrwTrue)}/>|  MRW  |</label>
+                    <label><input type="checkbox"  value= {dhlTrue} onChange={e => setSeurTrue(!dhlTrue)}/>|  DHL  |</label>
+                    <label><input type="checkbox"  value= "correosTrue" onChange={e => setSeurTrue()}/>|  Correos  |</label>
 
                 </div>
 
-
-
-
                 <div>
                     <table>
-                    {parcel_array.map((parcel, i) => {return (<Overview index = {i} number={parcel.shipnumber} 
-                        company={parcel.company} details = {details} clickDetails={() => seeDetails()}/>)})}
+                    {parcel_array.map((parcel, i) => {
+                        var aux = true
+                        if(parcel.company=="ups"){aux = upsTrue}
+                        else{aux = true}
+                                                if(aux){
+                            return (<Overview index = {i} number={parcel.shipnumber} 
+                                company={parcel.company} details = {details} clickDetails={() => seeDetails()}/>)}
+                        else {return <div></div>}})}
                     </table>
                 </div>   
             </div>
